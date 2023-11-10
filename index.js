@@ -9,13 +9,21 @@ bot.on('message', async (msg) => {
   const chatId = msg.chat.id;
   const text = msg.text
 
-  if (text === '/start') {
-    await bot.sendMessage(chatId, 'Welcome to your new todo list bot', {
+  if(text === '/start') {
+    await bot.sendMessage(chatId, 'Ниже появится кнопка, заполни форму', {
         reply_markup: {
-            inline_keyboard: [
-                [{text: 'Show all tasks list'}, {web_app: {url: 'https://keen-sunburst-dfdd00.netlify.app/'}}]
+            keyboard: [
+                [{text: 'Заполнить форму', web_app: {url: webAppUrl + '/form'}}]
             ]
         }
     })
-  }
+
+    await bot.sendMessage(chatId, 'Заходи в наш интернет магазин по кнопке ниже', {
+        reply_markup: {
+            inline_keyboard: [
+                [{text: 'Сделать заказ', web_app: {url: webAppUrl}}]
+            ]
+        }
+    })
+}
 });
